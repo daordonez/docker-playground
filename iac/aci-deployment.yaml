@@ -1,0 +1,26 @@
+apiVersion: 2018-10-01
+type: Microsoft.ContainerInstance/containerGroups
+location: westus
+name: my-fastapi-container
+properties:
+  containers:
+  - name: myfastapi
+    properties:
+      image: az204drdoacr.azurecr.io/dordolab/myfastapi:cf1
+      ports:
+      - port: 80
+      - port: 8000 # container port
+      resources:
+        requests:
+          cpu: 1.0 # CPU needed
+          memoryInGb: 1.5 # memory needed
+  osType: Linux
+  ipAddress:
+    type: Public
+    ports:
+    - protocol: TCP
+      port: 80 # Internet port
+  restartPolicy: Always 
+  instanceView:
+    events: []
+tags: {}
